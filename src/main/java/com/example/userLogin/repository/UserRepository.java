@@ -1,11 +1,11 @@
 package com.example.userLogin.repository;
 
-import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
-import org.springframework.stereotype.Repository;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
-@Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+import com.example.userLogin.entity.User;
 
+public interface UserRepository extends JpaRepository<User,Long>{
+    @Query("SELECT u FROM User u WHERE u.username = :username")
     User findByUsername(String username);
 }
